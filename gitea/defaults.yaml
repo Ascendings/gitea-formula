@@ -1,0 +1,34 @@
+gitea:
+  package_name: gitea
+  service_name: gitea
+  service_enable: true
+  conf_file: /etc/gitea/conf/app.ini
+  conf_user: git
+  conf_group: root
+  conf_mode: 640
+
+  db:
+    type: sqlite3
+    path: /var/db/gitea/gitea.db
+    ssl_mode: false
+
+  server:
+    domain: git.example.com
+    address: 127.0.0.1
+    port: 3000
+    root_url: http://git.example.com/
+    disable_ssh: false
+    ssh_domain: '%(DOMAIN)s'
+    ssh_port: 22
+    offline_mode: false
+    app_data_path: /var/db/gitea/data
+
+  log:
+    path: /var/log/gitea
+    mode: file
+    level: Info
+
+  picture:
+    avatar_path: /var/db/gitea/data/avatars
+    disable_gravatar: false
+    enable_federated_avatar: false

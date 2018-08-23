@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{## Start with  defaults from defaults.sls ##}
+{% import_yaml 'gitea/defaults.yaml' as default_settings %}
+
+{##
+Setup variable using grains['os_family'] based logic, only add key:values here
+that differ from whats in defaults.yaml
+##}
+{% set flavor_map = salt['grains.filter_by'](
+  {
+    'Debian': {
+    },
+    'FreeBSD': {
+      'conf_file': '/usr/local/etc/gitea/conf/app.ini',
+    },
+    'RedHat': {
+    }
+  },
+  grain='os_family',
+  merge=salt['pillar.get']('gitea:lookup')
+) %}
+
+{## Merge the flavor_map over the default settings ##}
+{% do default_settings.gitea.update(flavor_map) %}
+
+{## Merge in changes from the gitea:lookup pillar ##}
+{% set gitea_settings = salt['pillar.get'](
+  'gitea',
+  default=default_settings.gitea,
+  merge=True
+) %}
