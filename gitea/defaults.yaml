@@ -23,6 +23,10 @@ gitea:
     offline_mode: false
     app_data_path: /var/db/gitea/data
 
+  security:
+    secret_key: UbACXCidm5GfvuxWPbpgC
+    internal_token: XrbJQ3lAsyxSaU23TkcArC9DhysBYMDV
+
   log:
     path: /var/log/gitea
     mode: file
