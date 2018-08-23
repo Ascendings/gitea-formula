@@ -7,16 +7,25 @@ gitea:
   conf_group: root
   conf_mode: 640
 
+  # SQLite example
   db:
     type: sqlite3
     path: /var/db/gitea/gitea.db
     ssl_mode: disable
+  # MariaDB example
+  db:
+    type: mysql
+    host: 127.0.0.1
+    dbname: gitea
+    user: gitea
+    passwd: SuperSecretPassword
+    ssl_mode: disable
 
   server:
-    domain: git.example.com
-    address: 127.0.0.1
+    domain: git.example.com # Change this
+    address: 127.0.0.1 # Change this if you're not using a reverse proxy
     port: 3000
-    root_url: http://git.example.com/
+    root_url: http://git.example.com/ # Change this
     disable_ssh: false
     ssh_domain: '%(DOMAIN)s'
     ssh_port: 22
@@ -24,8 +33,8 @@ gitea:
     app_data_path: /var/db/gitea/data
 
   security:
-    secret_key: UbACXCidm5GfvuxWPbpgC
-    internal_token: XrbJQ3lAsyxSaU23TkcArC9DhysBYMDV
+    secret_key: UbACXCidm5GfvuxWPbpgC # You need to change this
+    internal_token: XrbJQ3lAsyxSaU23TkcArC9DhysBYMDV # You need to change this
 
   log:
     path: /var/log/gitea

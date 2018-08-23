@@ -14,12 +14,13 @@ that differ from whats in defaults.yaml
     },
     'FreeBSD': {
       'conf_file': '/usr/local/etc/gitea/conf/app.ini',
+      'conf_group': 'wheel',
     },
     'RedHat': {
     }
   },
   grain='os_family',
-  merge=salt['pillar.get']('gitea:lookup')
+  merge=salt['pillar.get']('gitea')
 ) %}
 
 {## Merge the flavor_map over the default settings ##}
