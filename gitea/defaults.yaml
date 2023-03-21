@@ -8,5 +8,6 @@ gitea:
   config_owner: 'gitea'
   config_group: 'gitea'
   config_mode: 0644
+  config: {}
   service_name: 'gitea'
   service_enabled: True

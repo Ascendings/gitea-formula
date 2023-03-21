@@ -2,4 +2,4 @@
 # vim: ft=yaml
 
 FreeBSD:
-  config_path: '/usr/local/etc/gitea/app.ini'
+  config_path: '/usr/local/etc/gitea/conf/app.ini'

@@ -14,5 +14,10 @@ gitea_config_file:
     - user: {{ gitea.config_owner }}
     - group: {{ gitea.config_group }}
     - mode: {{ gitea.config_mode }}
+    - source: 'salt://gitea/files/app.ini.jinja'
+    - template: 'jinja'
+    - makedirs: True
+    - context:
+      gitea: {{ gitea.config | json }}
     - require:
       - sls: {{ sls_package_install }}
