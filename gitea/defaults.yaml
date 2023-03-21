@@ -8,6 +8,21 @@ gitea:
   config_owner: 'gitea'
   config_group: 'gitea'
   config_mode: 0644
-  config: {}
   service_name: 'gitea'
   service_enabled: True
+
+  # App configuration defaults
+  config:
+    app_name: 'Gitea: Git with a cup of tea'
+    run_user: 'git'
+    run_mode: 'prod'
+    server:
+      domain: 'localhost'
+      http_address: '127.0.0.1'
+      http_port: '3000'
+      app_url: 'http://localhost:3000/'
+      disable_ssh: False
+      ssh_domain: "%(DOMAIN)s"
+      ssh_port: 22
+      offline_mode: False
+      app_data_path: '/var/db/gitea/data'
