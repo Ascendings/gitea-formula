@@ -13,5 +13,3 @@ gitea_pkg_install:
     - name: {{ gitea.config_owner }}
     - gid: {{ gitea.config_group }}
     - system: True
-
-    {%- endif %}
