@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+gitea:
+  pkg_manage_repo: False
+  pkg_name: 'gitea'
+  config_path: '/etc/gitea/app.ini'
+  config_owner: 'gitea'
+  config_group: 'gitea'
+  config_mode: 0644
+  service_name: 'gitea'
+  service_enabled: True
