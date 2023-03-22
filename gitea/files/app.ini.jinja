@@ -57,7 +57,7 @@ DISABLE_GRAVATAR        = false
 ENABLE_FEDERATED_AVATAR = false
 
 [repository]
-ROOT = /var/db/gitea/gitea-repositories
+ROOT = {{ gitea.app_data_path }}/gitea-repositories
 # Gitea's default is 'bash', so if you have bash installed, you can comment
 # this out.
 SCRIPT_TYPE = sh
