@@ -3,3 +3,7 @@
 
 FreeBSD:
   config_path: '/usr/local/etc/gitea/conf/app.ini'
+  config:
+    app_data_path: '/var/db/gitea/data'
+    database:
+      path: '/var/db/gitea/data/gitea.db'

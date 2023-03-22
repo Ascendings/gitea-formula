@@ -16,6 +16,9 @@ gitea:
     app_name: 'Gitea: Git with a cup of tea'
     run_user: 'git'
     run_mode: 'prod'
+    app_data_path: '/var/lib/gitea'
+    security:
+      secret_key: 'ChangeMeBeforeRunning'
     server:
       domain: 'localhost'
       http_address: '127.0.0.1'
@@ -25,4 +28,13 @@ gitea:
       ssh_domain: "%(DOMAIN)s"
       ssh_port: 22
       offline_mode: False
-      app_data_path: '/var/db/gitea/data'
+    database:
+      driver: 'sqlite3'
+      host: '127.0.0.1:3306'
+      name: 'gitea'
+      user: 'gitea'
+      password: ''
+      path: '/var/lib/gitea/data/gitea.db'
+      ssl: 'disable'
+      charset: 'utf8'
+      log_sql: 'false'

@@ -27,16 +27,18 @@ RUN_USER = {{ gitea.run_user }}
 RUN_MODE = {{ gitea.run_mode }}
 
 [database]
-DB_TYPE  = sqlite3
-HOST     = 127.0.0.1:3306
-NAME     = gitea
-PASSWD   = 
-PATH     = /var/db/gitea/gitea.db
-SSL_MODE = disable
-USER     = root
+DB_TYPE  = {{ gitea.database.driver }}
+HOST     = {{ gitea.database.host }}
+NAME     = {{ gitea.database.name }}
+USER     = {{ gitea.database.user }}
+PASSWD   = {{ gitea.database.password }}
+PATH     = {{ gitea.database.path }}
+SSL_MODE = {{ gitea.database.ssl }}
+CHARSET  = {{ gitea.database.charset }}
+LOG_SQL  = {{ gitea.database.log_sql }}
 
 [indexer]
-ISSUE_INDEXER_PATH = /var/db/gitea/indexers/issues.bleve
+ISSUE_INDEXER_PATH = {{ gitea.app_data_path }}/indexers/issues.bleve
 
 [log]
 ROOT_PATH = /var/log/gitea
@@ -50,7 +52,7 @@ ENABLED = false
 JWT_SECRET = D56bmu6xCtEKs9vKKgMKnsa4X9FDwo64HVyaS4fQ4mY
 
 [picture]
-AVATAR_UPLOAD_PATH      = /var/db/gitea/data/avatars
+AVATAR_UPLOAD_PATH      = {{ gitea.app_data_path }}/data/avatars
 DISABLE_GRAVATAR        = false
 ENABLE_FEDERATED_AVATAR = false
 
@@ -61,16 +63,16 @@ ROOT = /var/db/gitea/gitea-repositories
 SCRIPT_TYPE = sh
 
 [repository.upload]
-TEMP_PATH = /var/db/gitea/data/tmp/uploads
+TEMP_PATH = {{ gitea.app_data_path }}/data/tmp/uploads
 
 [security]
 INSTALL_LOCK = true
 INTERNAL_TOKEN = 1FFhAklka01JhgJTRUrFujWYiv4ijqcTIfXJ9o4n1fWxz+XVQdXhrqDTlsnD7fvz7gugdhgkx0FY2Lx6IBdPQw==
-SECRET_KEY   = ChangeMeBeforeRunning
+SECRET_KEY   = {{ gitea.security.secret_key }}
 
 [session]
 PROVIDER = file
-PROVIDER_CONFIG = /var/db/gitea/data/sessions
+PROVIDER_CONFIG = {{ gitea.app_data_path }}/data/sessions
 
 [server]
 DOMAIN       = {{ gitea.server.domain }}
@@ -81,7 +83,7 @@ DISABLE_SSH  = {{ gitea.server.disable_ssh }}
 SSH_DOMAIN   = {{ gitea.server.ssh_domain }}
 SSH_PORT     = {{ gitea.server.ssh_port }}
 OFFLINE_MODE = {{ gitea.server.offline_mode }}
-APP_DATA_PATH = {{ gitea.server.app_data_path }}
+APP_DATA_PATH = {{ gitea.app_data_path }}/data
 
 [service]
 REGISTER_EMAIL_CONFIRM = false
